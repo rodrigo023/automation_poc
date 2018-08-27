@@ -1,0 +1,9 @@
+C:\Users\flima\source\repos\Core\Core\bin\Debug\Core.dll
+C:\Users\flima\source\repos\Core\Core\bin\Debug\Core.pdb
+C:\Users\flima\source\repos\Core\Core\bin\Debug\WebDriver.dll
+C:\Users\flima\source\repos\Core\Core\bin\Debug\WebDriver.xml
+C:\Users\flima\source\repos\Core\Core\obj\Debug\Core.csprojAssemblyReference.cache
+C:\Users\flima\source\repos\Core\Core\obj\Debug\Core.csproj.CoreCompileInputs.cache
+C:\Users\flima\source\repos\Core\Core\obj\Debug\Core.csproj.CopyComplete
+C:\Users\flima\source\repos\Core\Core\obj\Debug\Core.dll
+C:\Users\flima\source\repos\Core\Core\obj\Debug\Core.pdb

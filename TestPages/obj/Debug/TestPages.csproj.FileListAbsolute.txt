@@ -1,0 +1,13 @@
+C:\Users\flima\source\repos\Core\TestPages\obj\Debug\TestPages.csprojAssemblyReference.cache
+C:\Users\flima\source\repos\Core\TestPages\obj\Debug\TestPages.csproj.CoreCompileInputs.cache
+C:\Users\flima\source\repos\Core\TestPages\bin\Debug\TestPages.dll
+C:\Users\flima\source\repos\Core\TestPages\bin\Debug\TestPages.pdb
+C:\Users\flima\source\repos\Core\TestPages\bin\Debug\Core.dll
+C:\Users\flima\source\repos\Core\TestPages\bin\Debug\WebDriver.dll
+C:\Users\flima\source\repos\Core\TestPages\bin\Debug\WebDriver.Support.dll
+C:\Users\flima\source\repos\Core\TestPages\bin\Debug\Core.pdb
+C:\Users\flima\source\repos\Core\TestPages\bin\Debug\WebDriver.xml
+C:\Users\flima\source\repos\Core\TestPages\bin\Debug\WebDriver.Support.xml
+C:\Users\flima\source\repos\Core\TestPages\obj\Debug\TestPages.csproj.CopyComplete
+C:\Users\flima\source\repos\Core\TestPages\obj\Debug\TestPages.dll
+C:\Users\flima\source\repos\Core\TestPages\obj\Debug\TestPages.pdb
