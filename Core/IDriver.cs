@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core
 {
-    public interface IDriver
+    internal interface IDriver
     {
         void Launch();
         INavigation Navigate();

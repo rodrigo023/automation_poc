@@ -1,13 +1,8 @@
 ﻿namespace Core
 {
-    public interface IWebPage
-    {
-        string Url { get; }
-    }
-
     public abstract class BasePage : IComponent
     {
-        protected IDriver Driver { get; set; }
+        internal IDriver Driver { get; set; }
 
         protected BasePage()
         {

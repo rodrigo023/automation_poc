@@ -2,7 +2,7 @@
 
 namespace Core
 {
-    public interface IDriverSettings
+    internal interface IDriverSettings
     {
         Browsers Browser { get; }
 
