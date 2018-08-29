@@ -5,25 +5,20 @@
         string Url { get; }
     }
 
-    public abstract class BasePage
+    public abstract class BasePage : IComponent
     {
-        public ISession Session;
+        protected IDriver Driver { get; set; }
 
-        protected Driver Driver;
-
-        public abstract string URL { get; set; }
-
-        public BasePage(ISession session)
+        protected BasePage()
         {
-            Session = session;
-
-            if(((IHasWebDriver)session).Driver == null)
-            {
-                ((IHasWebDriver)session).Driver = DriverFactory.GetDriver(Session.DriverSettings);
-            }
-
-            Driver = ((IHasWebDriver)session).Driver;
         }
+
+        internal BasePage(IDriver driver)
+        {
+            Driver = driver;
+        }
+
+        public abstract string Url { get; set; }
 
         public abstract void Close();
 
@@ -31,8 +26,20 @@
 
         public void Go()
         {
-            Driver.Navigate().GoToUrl(URL);
+            Driver.Navigate().GoToUrl(Url);
         }
-       
+
+        protected T GoToPage<T>() where T: IComponent, new()
+        {
+            var page = new T();
+            SetDriver(page);
+
+            return page;
+        }
+
+        private void SetDriver(IComponent page)
+        {
+            (page as BasePage).Driver = Driver;
+        }
     }
 }

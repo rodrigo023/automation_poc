@@ -1,7 +1,5 @@
 ﻿using Core;
-
 using NUnit.Framework;
-using System.Threading;
 using TestPages;
 
 namespace Tests
@@ -12,13 +10,11 @@ namespace Tests
         [Test]
         public void Test01()
         {
-            var landingPage = new LandingPage(Session);
+            var landingPage = Session.CreatePage<LandingPage>();
             landingPage.Go();
 
             var checkBoxPage = landingPage.NavigateToCheckboxesPage();
-
-            Thread.Sleep(5000);
-
+            
             checkBoxPage.Close();
         }
     }

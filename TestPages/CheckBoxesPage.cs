@@ -7,10 +7,6 @@ namespace TestPages
 {
     public class CheckBoxesPage : BasePage
     {
-        public CheckBoxesPage(ISession session) : base(session)
-        {
-        }
-
         public override void Close()
         {
             Driver.Close();
@@ -23,7 +19,7 @@ namespace TestPages
 
         public List<IWebElement> CheckBoxes => Driver.FindElements(By.XPath("//input[@type='checkbox']")).ToList();
 
-        public override string URL { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public override string Url { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
         //public Footer Footer; 
 

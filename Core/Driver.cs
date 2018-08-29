@@ -1,26 +1,37 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace Core
 {
-    public class Driver : IWebDriver
+    internal class Driver : IDriver
     {
-        private readonly IWebDriver _driver;
-
+        private readonly IDriverSettings _driverSettings;
+        private IWebDriver _driver;
         public string Url { get; set; }
-
         public string Title => _driver.Title;
-
         public string PageSource => _driver.PageSource;
-
         public string CurrentWindowHandle => _driver.CurrentWindowHandle;
+        public IReadOnlyCollection<string> WindowHandles => _driver.WindowHandles;
 
-        public ReadOnlyCollection<string> WindowHandles => _driver.WindowHandles;
-
-        public Driver(IWebDriver driver)
+        public Driver(IDriverSettings driverSettings)
         {
-            _driver = driver;
+            _driverSettings = driverSettings;
+        }
+
+        public void Launch()
+        {
+            switch (_driverSettings.Browser)
+            {
+                case Browsers.Firefox:
+                    _driver = new FirefoxDriver();
+                    break;
+                default:
+                    _driver = new ChromeDriver();
+                    break;
+            }
         }
 
         public void Close()
@@ -38,7 +49,7 @@ namespace Core
             return _driver.FindElement(by);
         }
 
-        public ReadOnlyCollection<IWebElement> FindElements(By by)
+        public IReadOnlyCollection<IWebElement> FindElements(By by)
         {
             return _driver.FindElements(by);
         }
@@ -55,7 +66,7 @@ namespace Core
 
         public void Quit()
         {
-            throw new NotImplementedException();
+            _driver.Quit();
         }
 
         public ITargetLocator SwitchTo()

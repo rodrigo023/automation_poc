@@ -1,33 +1,29 @@
-﻿namespace Core
+﻿using System;
+
+namespace Core
 {
-    public interface ISession
+    internal class Session : ISession
     {
-        DriverSettings DriverSettings { get; set; }
+        private IDriver _driver;
+        private const string DriverProperty = "Driver";
 
-        Environments Environment { get; set; }
-
-    }
-
-    internal interface IHasWebDriver
-    {
-        Driver Driver { get; set; }
-    }
-
-    public class Session : IHasWebDriver, ISession
-    {
-  
-
-        public Session()
+        internal Session(IDriver driver)
         {
-            if(Driver == null)
-            {
-                Driver = DriverFactory.GetDriver(DriverSettings);
-            }
-            
+            _driver = driver;
         }
 
-        public Driver Driver { get; set; }
-        public DriverSettings DriverSettings { get => new DriverSettings(); set => throw new System.NotImplementedException(); }
-        public Environments Environment { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public T CreatePage<T>() where T: IComponent
+        {
+            var component = (T)Activator.CreateInstance(typeof(T));
+            SetDriver(component);
+
+            return component;
+        }
+
+        private void SetDriver<T>(T component) where T: IComponent
+        {
+            var driverProperty = typeof(T).GetProperty(DriverProperty, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            driverProperty.SetValue(component, _driver);
+        }
     }
 }

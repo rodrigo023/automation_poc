@@ -1,15 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OpenQA.Selenium;
 
 namespace Core
 {
-    public class DriverSettings
+    public class DriverSettings : IDriverSettings
     {
-        public Browsers Browser { get; set; }
+        public Browsers Browser { get; }
 
-        public Platforms Platform { get; set; }
+        public PlatformType PlatformType { get; }
+
+        public DriverSettings(Browsers browser, PlatformType platformType)
+        {
+            Browser = browser;
+            PlatformType = platformType;
+        }
+
+        public DriverSettings(Browsers browser)
+        {
+            Browser = browser;
+        }
     }
 }
