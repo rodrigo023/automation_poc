@@ -1,29 +1,20 @@
-﻿using System;
-
-namespace Core
+﻿namespace Core
 {
     internal class Session : ISession
     {
         private IDriver _driver;
-        private const string DriverProperty = "Driver";
 
         internal Session(IDriver driver)
         {
             _driver = driver;
         }
 
-        public T CreatePage<T>() where T: IComponent
+        public T GoToPage<T>() where T: INavigableComponent
         {
-            var component = (T)Activator.CreateInstance(typeof(T));
-            SetDriver(component);
+            var page = _driver.CreatePage<T>();
+            page.GoToUrl();
 
-            return component;
-        }
-
-        private void SetDriver<T>(T component) where T: IComponent
-        {
-            var driverProperty = typeof(T).GetProperty(DriverProperty, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            driverProperty.SetValue(component, _driver);
+            return page;
         }
     }
 }

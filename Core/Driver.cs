@@ -15,10 +15,12 @@ namespace Core
         public string PageSource => _driver.PageSource;
         public string CurrentWindowHandle => _driver.CurrentWindowHandle;
         public IReadOnlyCollection<string> WindowHandles => _driver.WindowHandles;
+        public IComponentCreator ComponentCreator { get; }
 
-        public Driver(IDriverSettings driverSettings)
+        public Driver(IDriverSettings driverSettings, IComponentCreator componentCreator)
         {
             _driverSettings = driverSettings;
+            ComponentCreator = componentCreator;
         }
 
         public void Launch()
@@ -72,6 +74,11 @@ namespace Core
         public ITargetLocator SwitchTo()
         {
             throw new NotImplementedException();
+        }
+
+        public T CreatePage<T>() where T : IComponent
+        {
+            return ComponentCreator.Create<T>(this);
         }
     }
 }

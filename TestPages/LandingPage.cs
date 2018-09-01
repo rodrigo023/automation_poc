@@ -1,14 +1,17 @@
 ﻿using Core;
 using OpenQA.Selenium;
-using System;
 
 namespace TestPages
 {
-    public class LandingPage : BasePage
+    public class LandingPage : WebPage
     {
+        public LandingPage(IDriver driver) : base(driver)
+        {
+        }
+
         public IWebElement CheckBoxesLink => Driver.FindElement(By.XPath("//a[contains(@href,'/checkboxes')]"));
 
-        public override string Url { get => "https://the-internet.herokuapp.com/"; set => throw new NotImplementedException(); }
+        public override string Url { get => "https://the-internet.herokuapp.com/"; }
 
         public override void Close()
         {
@@ -23,7 +26,7 @@ namespace TestPages
         public CheckBoxesPage NavigateToCheckboxesPage()
         {
             CheckBoxesLink.Click();
-            return GoToPage<CheckBoxesPage>();
+            return Driver.CreatePage<CheckBoxesPage>();
         }
     }
 }

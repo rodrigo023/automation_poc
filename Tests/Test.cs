@@ -4,15 +4,16 @@ using TestPages;
 
 namespace Tests
 {
-    [TestFixture]
-    public class Test : TestBase
+    public class Test : WebTest
     {
+        public Test(IDriverSettings driverSettings) : base(driverSettings)
+        {
+        }
+
         [Test]
         public void Test01()
         {
-            var landingPage = Session.CreatePage<LandingPage>();
-            landingPage.Go();
-
+            var landingPage = Session.GoToPage<LandingPage>();
             var checkBoxPage = landingPage.NavigateToCheckboxesPage();
             
             checkBoxPage.Close();

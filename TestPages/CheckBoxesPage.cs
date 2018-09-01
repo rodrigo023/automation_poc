@@ -5,8 +5,12 @@ using System.Linq;
 
 namespace TestPages
 {
-    public class CheckBoxesPage : BasePage
+    public class CheckBoxesPage : WebPage
     {
+        public CheckBoxesPage(IDriver driver) : base(driver)
+        {
+        }
+
         public override void Close()
         {
             Driver.Close();
@@ -19,7 +23,7 @@ namespace TestPages
 
         public List<IWebElement> CheckBoxes => Driver.FindElements(By.XPath("//input[@type='checkbox']")).ToList();
 
-        public override string Url { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public override string Url { get => throw new System.NotImplementedException(); }
 
         //public Footer Footer; 
 

@@ -1,40 +1,23 @@
 ﻿namespace Core
 {
-    public abstract class BasePage : IComponent
+    public abstract class WebPage : INavigableComponent
     {
-        internal IDriver Driver { get; set; }
+        internal IDriver Driver { get; }
 
-        protected BasePage()
-        {
-        }
-
-        internal BasePage(IDriver driver)
+        internal WebPage(IDriver driver)
         {
             Driver = driver;
         }
 
-        public abstract string Url { get; set; }
+        public abstract string Url { get; }
 
         public abstract void Close();
 
-        //public abstract void IsPageReady();
-
-        public void Go()
+        public void GoToUrl()
         {
             Driver.Navigate().GoToUrl(Url);
         }
 
-        protected T GoToPage<T>() where T: IComponent, new()
-        {
-            var page = new T();
-            SetDriver(page);
-
-            return page;
-        }
-
-        private void SetDriver(IComponent page)
-        {
-            (page as BasePage).Driver = Driver;
-        }
+        //public abstract void IsPageReady();
     }
 }

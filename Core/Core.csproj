@@ -69,17 +69,21 @@
   <ItemGroup>
     <Compile Include="BasePage.cs" />
     <Compile Include="Browsers.cs" />
+    <Compile Include="DefaultPageCreator.cs" />
     <Compile Include="Driver.cs" />
     <Compile Include="DriverSettings.cs" />
     <Compile Include="Environments.cs" />
     <Compile Include="IComponent.cs" />
+    <Compile Include="IComponentCreator.cs" />
     <Compile Include="IDriver.cs" />
     <Compile Include="IDriverSettings.cs" />
+    <Compile Include="INavigableComponent.cs" />
     <Compile Include="ISession.cs" />
     <Compile Include="IWebPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="TestBase.cs" />
+    <Compile Include="TestEnvironmentSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

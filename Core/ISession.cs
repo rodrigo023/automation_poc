@@ -2,5 +2,5 @@
 
 public interface ISession
 {
-    T CreatePage<T>() where T : IComponent;
+    T GoToPage<T>() where T : INavigableComponent;
 }

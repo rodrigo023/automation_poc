@@ -4,17 +4,25 @@ using NUnit.Framework;
 namespace Core
 {
     [SetUpFixture]
-    public abstract class TestBase
+    [TestFixtureSource(typeof(TestEnvironmentSource))]
+    public abstract class WebTest
     {
         protected ISession Session { get; private set; }
         private IContainer _container;
         private IDriver _driver;
+        private IDriverSettings _driverSettings;
+
+        protected WebTest(IDriverSettings driverSettings)
+        {
+            _driverSettings = driverSettings;
+        }
 
         [OneTimeSetUp]
         public void SetUp()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterInstance(new DriverSettings(Browsers.Chrome)).As<IDriverSettings>();
+            builder.RegisterInstance(_driverSettings).As<IDriverSettings>();
+            builder.RegisterType<DefaultComponentCreator>().As<IComponentCreator>();
             builder.RegisterType<Driver>().As<IDriver>().InstancePerLifetimeScope();
             builder.RegisterType<Session>().As<ISession>()
                 .FindConstructorsWith(x => x.GetConstructors(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance));
@@ -32,8 +40,8 @@ namespace Core
             }
         }
 
-        [OneTimeTearDown]
-        public void TearDown()
+        [TearDown]
+        public void FinishTest()
         {
             _driver.Quit();
         }
