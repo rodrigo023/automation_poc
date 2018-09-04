@@ -9,7 +9,7 @@ namespace TestPages
         {
         }
 
-        public IWebElement CheckBoxesLink => Driver.FindElement(By.XPath("//a[contains(@href,'/checkboxes')]"));
+        public ILink CheckBoxesLink => Driver.CreateElement<Link>(By.XPath("//a[contains(@href,'/checkboxes')]"));
 
         public override string Url { get => "https://the-internet.herokuapp.com/"; }
 
@@ -22,11 +22,5 @@ namespace TestPages
         //{
         //    throw new NotImplementedException();
         //}
-
-        public CheckBoxesPage NavigateToCheckboxesPage()
-        {
-            CheckBoxesLink.Click();
-            return Driver.CreatePage<CheckBoxesPage>();
-        }
     }
 }

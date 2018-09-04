@@ -14,8 +14,8 @@ namespace Tests
         public void Test01()
         {
             var landingPage = Session.GoToPage<LandingPage>();
-            var checkBoxPage = landingPage.NavigateToCheckboxesPage();
-            
+            var checkBoxPage = landingPage.CheckBoxesLink.Click<CheckBoxesPage>();
+
             checkBoxPage.Close();
         }
     }

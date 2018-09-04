@@ -80,5 +80,10 @@ namespace Core
         {
             return ComponentCreator.Create<T>(this);
         }
+
+        public T CreateElement<T>(By finder) where T : ICustomElement
+        {
+            return  new WebElementFactory(this, ComponentCreator).Create<T>(finder);
+        }
     }
 }

@@ -12,5 +12,6 @@ namespace Core
         INavigation Navigate();
         IWebElement FindElement(By by);
         IReadOnlyCollection<IWebElement> FindElements(By by);
+        T CreateElement<T>(By finder) where T : ICustomElement;
     }
 }
